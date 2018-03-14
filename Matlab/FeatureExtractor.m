@@ -1,20 +1,24 @@
 %% Extracts the features
 %% MAIN PROGRAM
+%% Loading data
+% load('Data\classification_data.mat')
+
 close all
-for k=1
-	% computes centerline
+for k=1:1
+	% Load stenoses binay image
     binaryImage = imagesBWSten{k};
    
-    
+    % Compute the skelimage (contains all centerlines)
     skelImage = bwmorph(binaryImage, 'skel', inf);
     skelImage = bwmorph(skelImage, 'spur', 15);
-    skelImage = bwmorph(skelImage, 'thin', inf);
+    skelImage = bwmorph(skelImage, 'thin', 1);
     
     % Label the discovered centerlines
     [~, numCenterlines] = bwlabel(skelImage);
     
+    % If we have a blood vessel with stenosis
     if numCenterlines > 2
-        % We need to only the relevant centerline
+        % We need to keep only the relevant centerlines
         skelImage = keepRelevantCenterline(skelImage, binaryImage);
         figure, imshow(skelImage)
     end
@@ -23,7 +27,7 @@ for k=1
     figure,
     subplot(2,2,[1 2]), imshow(binaryImage), title('Blood vessel binary image');
     subplot(2,2,3), imshow(skelImage), title('Broken skeleton of the blood vesel');
-    % DEBIG
+    % DEBUG
     
     [~, numCenterlines] = bwlabel(skelImage);
     if numCenterlines == 2

@@ -1,4 +1,4 @@
-    function rez = keepRelevantCenterline(skelImage, binaryImage)
+function rez = keepRelevantCenterline(skelImage, binaryImage)
     [labeledImage, numCenterlines] = bwlabel(skelImage);
 
     % Select the computed distances which are on the centerline

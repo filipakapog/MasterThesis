@@ -1,7 +1,7 @@
 %% Extracts the features
 %% MAIN PROGRAM
 %% Loading data
-% load('Data\classification_data.mat')
+load('Data\classification_data.mat')
 
 close all
 for k=1:1

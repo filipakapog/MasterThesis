@@ -1,2 +1,8 @@
 *.zip
 *.class
+*.idea
+*.iml
+Matlab/Demo code/Physionet/*
+Matlab/Demo code/ML tutorials/*
+
+

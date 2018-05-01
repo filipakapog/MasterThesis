@@ -3,6 +3,7 @@ package gui;
 import service.FileSaver;
 import service.MatlabFunctionCaller;
 import logger.MyLogger;
+import util.Constants;
 import util.MyPropertyManager;
 
 import javax.swing.*;
@@ -76,7 +77,7 @@ public class MyGUI extends JFrame {
         importButton.addActionListener(new ActionListener() {
             
             public void actionPerformed(ActionEvent e) {
-                String matlabDataPath = MyPropertyManager.getProperty("matlab.dataPath");
+                String matlabDataPath = Constants.PATHS.MATLAB_DATA.getPath();
                 logger.logIn(applicationStatusTextPane, "Import was clicked");
                 fileSaver.saveFileTo(matlabDataPath);
                 logger.logIn(applicationStatusTextPane, "File saved to " + matlabDataPath);

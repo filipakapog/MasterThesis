@@ -7,53 +7,103 @@
     <groupId>org.filip</groupId>
     <artifactId>CeMaDoare</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <repositories>
         <repository>
-            <id>unknown-jars-temp-repo</id>
-            <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
-            <url>file:${project.basedir}/lib</url>
+            <id>netbeans</id>
+            <name>Netbeans repo</name>
+            <url>http://bits.netbeans.org/maven2/</url>
         </repository>
     </repositories>
+
+    <properties>
+        <log4j.version>1.2.17</log4j.version>
+        <beansbinding.version>1.2.1</beansbinding.version>
+        <testng.version>6.9.10</testng.version>
+        <mockito.version>2.7.1</mockito.version>
+        <powermock.version>2.0.0-beta.5</powermock.version>
+        <hamcrest.version>1.3</hamcrest.version>
+    </properties>
+
     <dependencies>
+        <!--
+            #################################
+            ##### EXTERNAL DEPENDENCIES #####
+            #################################
+        -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <version>${log4j.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.netbeans.external/AbsoluteLayout -->
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.8.7</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.9.5</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
+            <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
-            <version>SNAPSHOT</version>
+            <version>RELEASE</version>
         </dependency>
+
         <dependency>
             <groupId>org.jdesktop</groupId>
             <artifactId>beansbinding</artifactId>
-            <version>1.2.1</version>
+            <version>${beansbinding.version}</version>
         </dependency>
 
-        <!-- Local repository dependency-->
+        <!--
+            #############################
+            ##### TEST DEPENDENCIES #####
+            #############################
+        -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-testng</artifactId>
+            <version>${powermock.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito2</artifactId>
+            <version>${powermock.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>${hamcrest.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!--
+            ##############################
+            ##### LOCAL DEPENDENCIES #####
+            ##############################
+        -->
         <dependency>
             <groupId>org.filip</groupId>
             <artifactId>matlab</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>D:/Matlab2017a/extern/engines/java/jar/engine.jar</systemPath>
+            <systemPath>${project.basedir}/lib/engine.jar</systemPath>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -66,7 +116,16 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>suite.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
             </plugin>
 
             <!--<plugin>-->
@@ -78,8 +137,5 @@
                 <!--</configuration>-->
             <!--</plugin>-->
         </plugins>
-
-
-
     </build>
 </project>

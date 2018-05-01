@@ -16,7 +16,8 @@ public interface Constants {
     enum PATHS {
         IMGS_HOME("/imgs/"),
         GITHUB_LOGO(IMGS_HOME.getPath() + "GitHub-Mark-32px.png"),
-        DOCTOR_LOGO(IMGS_HOME.getPath() + "login_doctor.jpg");
+        DOCTOR_LOGO(IMGS_HOME.getPath() + "login_doctor.jpg"),
+        MATLAB_DATA(MyPropertyManager.getProperty("matlab.dataPath"));
         
         private String path;
         

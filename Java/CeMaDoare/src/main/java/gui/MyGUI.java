@@ -1,7 +1,7 @@
 package gui;
 
-import gui.service.FileSaver;
-import gui.service.MatlabFunctionCaller;
+import service.FileSaver;
+import service.MatlabFunctionCaller;
 import logger.MyLogger;
 import util.MyPropertyManager;
 
@@ -35,6 +35,7 @@ public class MyGUI extends JFrame {
 
         fileSaver = new FileSaver(mainPanel);
         matlabFunctionCaller = MatlabFunctionCaller.getInstance();
+        matlabFunctionCaller.connectToMatlablEngine();
         logger = MyLogger.getInstance();
 
         setUpComponents();
@@ -66,7 +67,7 @@ public class MyGUI extends JFrame {
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
                 // We need to do this, because it takes too much time to get a connection to Matlab.
-                matlabFunctionCaller.disconnectMatlabEngine();
+                matlabFunctionCaller.disconnectFromMatlabEngine();
             }
         });
     }

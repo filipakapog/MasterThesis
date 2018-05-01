@@ -4,3 +4,5 @@
 4. Make a login form with admin and option to add users.
 5. Add visual cues like green light to represent the stages that the program goes through.
 6. Add check for having matlab install and check for the version that was used in this app.
+7. Refactor with Abstract factory pattern the generation of Classifiers connectors.
+8. Resize Image

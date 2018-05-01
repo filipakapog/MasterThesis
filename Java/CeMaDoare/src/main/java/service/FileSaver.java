@@ -1,4 +1,4 @@
-package gui.service;
+package service;
 
 import javax.swing.*;
 import java.io.File;
@@ -15,7 +15,6 @@ public class FileSaver {
         this.fileChooser = new JFileChooser();
         this.rootPannel = rootPannel;
     }
-
 
     /**
      * Saves a .mat file in the locationToSave location.

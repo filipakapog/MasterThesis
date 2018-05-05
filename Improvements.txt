@@ -6,3 +6,5 @@
 6. Add check for having matlab install and check for the version that was used in this app.
 7. Refactor with Abstract factory pattern the generation of Classifiers connectors.
 8. Resize Image
+9. Add something in MANIFEST.MF
+10. Use a different object for storing passwords. !!

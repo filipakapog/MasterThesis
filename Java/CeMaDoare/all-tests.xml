@@ -1,0 +1,15 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "all-tests" object-factory="org.powermock.modules.testng.PowerMockObjectFactory">
+    <test name = "all-tests">
+        <groups>
+            <run>
+                <exclude name="BROKEN"></exclude>
+            </run>
+        </groups>
+        <packages>
+            <package name="cemadoare.*"></package>
+        </packages>
+    </test>
+</suite>

@@ -35,6 +35,6 @@ public class AdminDaoImpl implements AdminDao {
         for (Admin admin : getAllAdmins()) {
             if (admin.getName().equals(name)) return admin;
         }
-        return new Admin();
+        return new Admin.Builder().build();
     }
 }

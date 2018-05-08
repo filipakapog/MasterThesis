@@ -1,11 +1,14 @@
 package cemadoare.model;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "DIAGNOSES")
-public class Diagnosis {
+public class Diagnosis implements Serializable{
     public static enum Result { SANATOS, BOLNAV, NECUNOSCUT}
 
     @Id
@@ -13,7 +16,7 @@ public class Diagnosis {
     @Column(name = "DIAGNOSISID")
     private int diagnosisId;
 
-    @Column(name = "CONSULTDDATE")
+    @Column(name = "CONSULTDATE")
     private Date consultDate;
 
     @Enumerated(EnumType.STRING)
@@ -26,34 +29,23 @@ public class Diagnosis {
 
     public Diagnosis() {}
 
-    public Diagnosis(Date consultDate, Result result, Patient patient) {
-        this.consultDate = consultDate;
-        this.result = result;
-        this.patient = patient;
+    private Diagnosis(Builder builder) {
+        diagnosisId = builder.diagnosisId;
+        consultDate = builder.consultDate;
+        result = builder.result;
+        patient = builder.patient;
     }
 
     public int getDiagnosisId() {
         return diagnosisId;
     }
 
-    public void setDiagnosisId(int diagnosisId) {
-        this.diagnosisId = diagnosisId;
-    }
-
     public Date getConsultDate() {
         return consultDate;
     }
 
-    public void setConsultDate(Date consultDate) {
-        this.consultDate = consultDate;
-    }
-
     public Result getResult() {
         return result;
-    }
-
-    public void setResult(Result result) {
-        this.result = result;
     }
 
     public Patient getPatient() {
@@ -94,5 +86,36 @@ public class Diagnosis {
                 ", result=" + result +
                 ", patient=" + patient +
                 '}';
+    }
+
+    public static class Builder {
+        private int diagnosisId;
+        private Date consultDate;
+        private Result result;
+        private Patient patient;
+
+        public Diagnosis build() {
+            return new Diagnosis(this);
+        }
+
+        public Builder withDiagnosisId(int diagnosisId) {
+            this.diagnosisId = diagnosisId;
+            return this;
+        }
+
+        public Builder withConsultDate(@NotNull Date consultDate) {
+            this.consultDate = consultDate;
+            return this;
+        }
+
+        public Builder withResult(@NotNull Result result) {
+            this.result = result;
+            return this;
+        }
+
+        public Builder withPatient(@NotNull Patient patient) {
+            this.patient = patient;
+            return this;
+        }
     }
 }

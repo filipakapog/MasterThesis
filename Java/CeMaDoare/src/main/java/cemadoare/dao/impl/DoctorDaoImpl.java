@@ -30,7 +30,7 @@ public class DoctorDaoImpl implements DoctorDao {
         for (Doctor doctor : getAllDoctors()) {
             if (doctor.getFirstName().equals(firstName)) { return doctor;}
         }
-        return new Doctor();
+        return new Doctor.Builder().build();
     }
 
     @Override
@@ -38,7 +38,7 @@ public class DoctorDaoImpl implements DoctorDao {
         for (Doctor doctor : getAllDoctors()) {
             if (doctor.getSecondName().equals(secondName)) { return doctor;}
         }
-        return new Doctor();
+        return new Doctor.Builder().build();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class DoctorDaoImpl implements DoctorDao {
         for (Doctor doctor : getAllDoctors()) {
             if (doctor.getLastName().equals(lastName)) { return doctor;}
         }
-        return new Doctor();
+        return new Doctor.Builder().build();
     }
 
     @Override

@@ -1,10 +1,11 @@
 package cemadoare.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "DOCTORS")
-public class Doctor {
+public class Doctor implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "DOCTORID")
@@ -24,51 +25,32 @@ public class Doctor {
 
     public Doctor() {}
 
-    public Doctor(String firstName, String secondName, String lastName, String password) {
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.lastName = lastName;
-        this.password = password;
+    private Doctor(Builder builder) {
+        doctorId = builder.doctorId;
+        firstName = builder.firstName;
+        secondName = builder.secondName;
+        lastName = builder.lastName;
+        password = builder.password;
     }
 
     public int getDoctorId() {
         return doctorId;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
-    }
-
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getSecondName() {
         return secondName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     @Override
@@ -104,5 +86,40 @@ public class Doctor {
                 ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public static class Builder {
+        private int doctorId;
+        private String firstName;
+        private String secondName;
+        private String lastName;
+        private String password;
+
+        public Doctor build() { return new Doctor(this); }
+
+        public Builder withDoctorId(int doctorId) {
+            this.doctorId = doctorId;
+            return this;
+        }
+
+        public Builder withFirstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public Builder withSecondName(String secondName) {
+            this.secondName = secondName;
+            return this;
+        }
+
+        public Builder withLastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Builder withPassword(String password) {
+            this.password = password;
+            return this;
+        }
     }
 }

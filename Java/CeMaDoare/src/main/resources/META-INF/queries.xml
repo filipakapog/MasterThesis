@@ -19,4 +19,12 @@
         <query>SELECT d FROM Doctor d</query>
     </named-query>
 
+    <!-- Diagnosis -->
+    <named-query name="Diagnosis.allDiagnoses">
+        <query>SELECT d FROM Diagnosis d </query>
+    </named-query>
+
+
+
+
 </entity-mappings>

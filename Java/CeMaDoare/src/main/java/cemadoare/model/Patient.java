@@ -1,12 +1,15 @@
 package cemadoare.model;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "PATIENTS")
-public class Patient {
+public class Patient implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "patientId")
@@ -40,50 +43,32 @@ public class Patient {
 
     public Patient() {}
 
-    public Patient(String firstName, String secondName, String lastName) {
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.lastName = lastName;
+    private Patient(Builder builder) {
+        this.patientId = builder.patientId;
+        this.firstName = builder.firstName;
+        this.secondName = builder.secondName;
+        this.lastName = builder.lastName;
+        this.diagnoses = builder.diagnoses;
     }
 
     public int getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
-    }
-
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getSecondName() {
         return secondName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public List<Diagnosis> getDiagnoses() {
         return diagnoses;
-    }
-
-    public void setDiagnoses(List<Diagnosis> diagnoses) {
-        this.diagnoses = diagnoses;
     }
 
     @Override
@@ -116,5 +101,41 @@ public class Patient {
                 ", lastName='" + lastName + '\'' +
                 ", diagnoses=" + diagnoses +
                 '}';
+    }
+
+    public static class Builder {
+        private int patientId;
+        private String firstName;
+        private String secondName;
+        private String lastName;
+        private List<Diagnosis> diagnoses;
+
+        public Patient build() {return  new Patient(this); }
+
+        public Builder withPatientId(int patientId) {
+            this.patientId = patientId;
+            return this;
+        }
+        public Builder withFirstName(@NotNull String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+        public Builder withSecondName(@NotNull String secondName) {
+            this.secondName = secondName;
+            return this;
+        }
+        public Builder withLastName(@NotNull String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+        public Builder withDiagnoses(@NotNull List<Diagnosis> diagnoses) {
+            this.diagnoses = diagnoses;
+            return this;
+        }
+
+
+
+
+
     }
 }

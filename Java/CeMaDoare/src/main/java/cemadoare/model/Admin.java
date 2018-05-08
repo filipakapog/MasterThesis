@@ -1,5 +1,7 @@
 package cemadoare.model;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -17,36 +19,24 @@ public class Admin implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
 
-    public Admin() {
-    }
+    public Admin() {}
 
-    public Admin(String name, String password) {
-        this.name = name;
-        this.password = password;
+    private Admin(Builder builder) {
+        adminId = builder.adminId;
+        name = builder.name;
+        password = builder.password;
     }
 
     public Integer getAdminId() {
         return adminId;
     }
 
-    public void setAdminId(Integer adminId) {
-        this.adminId = adminId;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     @Override
@@ -76,5 +66,28 @@ public class Admin implements Serializable {
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public static class Builder {
+        private int adminId;
+        private String name;
+        private String password;
+
+        public Admin build() { return new Admin(this);}
+
+        public Builder withAdminId(int adminId) {
+            this.adminId = adminId;
+            return this;
+        }
+
+        public Builder withName(@NotNull  String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withPassword(@NotNull String Password) {
+            this.adminId = adminId;
+            return this;
+        }
     }
 }

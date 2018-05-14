@@ -1,5 +1,5 @@
 package cemadoare.service;
 
 public interface LoginResponsible {
-    boolean tryLoginUser(String username, String password);
+    boolean successfulLogin(String username, String password);
 }

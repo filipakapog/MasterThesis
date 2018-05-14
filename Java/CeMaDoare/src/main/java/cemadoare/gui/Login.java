@@ -5,10 +5,16 @@
  */
 package cemadoare.gui;
 
+import cemadoare.service.LoginResponsible;
+import cemadoare.service.impl.LoginResponsibleImpl;
 import cemadoare.util.Constants;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.swing.*;
 import java.awt.*;
+
+import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**
  *
@@ -103,6 +109,11 @@ public class Login extends javax.swing.JFrame {
         login.setText("Login");
         login.setBorder(null);
         login.setFocusPainted(false);
+        login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
@@ -211,6 +222,24 @@ public class Login extends javax.swing.JFrame {
         System.out.println("Something happend in userPasswordFocusGained");
     }//GEN-LAST:event_userPasswordFocusGained
 
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+        String usr = userName.getText();
+        String pswd = password.getText();
+
+        if (isEmpty(usr) && isEmpty(pswd)) {
+            JOptionPane.showMessageDialog(this, "Username and Password are empty");
+        } else if (isEmpty(usr)) {
+            JOptionPane.showMessageDialog(this, "Username is empty");
+        } else if (isEmpty(pswd)) {
+            JOptionPane.showMessageDialog(this, "Password is empty");
+        } else if (!loginResponsible.successfulLogin(usr, pswd)){
+            JOptionPane.showMessageDialog(this, "This username does not exist in system/Wrong username password combination");
+        } else {
+            JOptionPane.showMessageDialog(this, "Successful login");
+        }
+
+    }//GEN-LAST:event_loginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -246,6 +275,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+    
+    private LoginResponsible loginResponsible = new LoginResponsibleImpl();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel footer;
@@ -262,4 +293,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField userName;
     private javax.swing.JPasswordField userPassword;
     // End of variables declaration//GEN-END:variables
+
 }

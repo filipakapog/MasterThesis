@@ -14,7 +14,7 @@ public class Diagnosis implements Serializable{
     @Id
     @GeneratedValue
     @Column(name = "DIAGNOSISID")
-    private int diagnosisId;
+    private Integer diagnosisId;
 
     @Column(name = "CONSULTDATE")
     private Date consultDate;
@@ -36,7 +36,7 @@ public class Diagnosis implements Serializable{
         patient = builder.patient;
     }
 
-    public int getDiagnosisId() {
+    public Integer getDiagnosisId() {
         return diagnosisId;
     }
 
@@ -71,7 +71,7 @@ public class Diagnosis implements Serializable{
 
     @Override
     public int hashCode() {
-        int result1 = diagnosisId;
+        Integer result1 = diagnosisId;
         result1 = 31 * result1 + consultDate.hashCode();
         result1 = 31 * result1 + result.hashCode();
         result1 = 31 * result1 + patient.hashCode();
@@ -89,7 +89,7 @@ public class Diagnosis implements Serializable{
     }
 
     public static class Builder {
-        private int diagnosisId;
+        private Integer diagnosisId;
         private Date consultDate;
         private Result result;
         private Patient patient;
@@ -98,7 +98,7 @@ public class Diagnosis implements Serializable{
             return new Diagnosis(this);
         }
 
-        public Builder withDiagnosisId(int diagnosisId) {
+        public Builder withDiagnosisId(Integer diagnosisId) {
             this.diagnosisId = diagnosisId;
             return this;
         }

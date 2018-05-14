@@ -18,12 +18,12 @@ public class DiagnosisDaoImpl implements DiagnosisDao {
     }
 
     @Override
-    public List<Diagnosis> getDiagnosisById(int id) {
+    public Diagnosis getDiagnosisById(int id) {
         return null;
     }
 
     @Override
-    public List<Diagnosis> getDiagnosisByDate(Date date) {
+    public Diagnosis getDiagnosisByDate(Date date) {
         return null;
     }
 

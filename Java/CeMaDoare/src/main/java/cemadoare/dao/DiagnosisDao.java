@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface DiagnosisDao {
     List<Diagnosis> getAllDiagnoses();
-    List<Diagnosis> getDiagnosisById(int id);
-    List<Diagnosis> getDiagnosisByDate(Date date);
+    Diagnosis getDiagnosisById(int id);
+    Diagnosis getDiagnosisByDate(Date date);
 
     List<Diagnosis> getDiagnosesBetween(Date startDate, Date endDate);
     List<Diagnosis> getDiagnosesByPatient(Patient patient);

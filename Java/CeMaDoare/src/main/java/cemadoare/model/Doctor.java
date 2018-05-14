@@ -9,7 +9,7 @@ public class Doctor implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "DOCTORID")
-    private int doctorId;
+    private Integer doctorId;
 
     @Column(name = "FIRSTNAME")
     private String firstName;
@@ -33,7 +33,7 @@ public class Doctor implements Serializable {
         password = builder.password;
     }
 
-    public int getDoctorId() {
+    public Integer getDoctorId() {
         return doctorId;
     }
 
@@ -89,7 +89,7 @@ public class Doctor implements Serializable {
     }
 
     public static class Builder {
-        private int doctorId;
+        private Integer doctorId;
         private String firstName;
         private String secondName;
         private String lastName;
@@ -97,7 +97,7 @@ public class Doctor implements Serializable {
 
         public Doctor build() { return new Doctor(this); }
 
-        public Builder withDoctorId(int doctorId) {
+        public Builder withDoctorId(Integer doctorId) {
             this.doctorId = doctorId;
             return this;
         }

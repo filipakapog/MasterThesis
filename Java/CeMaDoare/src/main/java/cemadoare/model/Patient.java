@@ -5,6 +5,7 @@ import com.sun.istack.internal.NotNull;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,7 +14,7 @@ public class Patient implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "patientId")
-    private int patientId;
+    private Integer patientId;
 
     @Column(name = "firstName")
     private String firstName;
@@ -23,6 +24,9 @@ public class Patient implements Serializable {
 
     @Column(name = "lastName")
     private String lastName;
+
+    @Column(name = "birthday")
+    private Date date;
 
     @OneToMany(
             mappedBy = "patient",
@@ -49,9 +53,10 @@ public class Patient implements Serializable {
         this.secondName = builder.secondName;
         this.lastName = builder.lastName;
         this.diagnoses = builder.diagnoses;
+        this.date = builder.date;
     }
 
-    public int getPatientId() {
+    public Integer getPatientId() {
         return patientId;
     }
 
@@ -71,6 +76,10 @@ public class Patient implements Serializable {
         return diagnoses;
     }
 
+    public void setDiagnoses(List<Diagnosis> diagnoses) {
+        this.diagnoses = diagnoses;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -86,7 +95,7 @@ public class Patient implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = patientId;
+        Integer result = patientId;
         result = 31 * result + firstName.hashCode();
         result = 31 * result + lastName.hashCode();
         return result;
@@ -99,20 +108,22 @@ public class Patient implements Serializable {
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", diagnoses=" + diagnoses +
+                ", diagnoses=" + diagnoses + '\'' +
+                ", date=" + date +
                 '}';
     }
 
     public static class Builder {
-        private int patientId;
+        private Integer patientId;
         private String firstName;
         private String secondName;
         private String lastName;
         private List<Diagnosis> diagnoses;
+        public Date date;
 
         public Patient build() {return  new Patient(this); }
 
-        public Builder withPatientId(int patientId) {
+        public Builder withPatientId(Integer patientId) {
             this.patientId = patientId;
             return this;
         }
@@ -132,10 +143,9 @@ public class Patient implements Serializable {
             this.diagnoses = diagnoses;
             return this;
         }
-
-
-
-
-
+        public Builder withDate(@NotNull Date date) {
+            this.date = date;
+            return this;
+        }
     }
 }

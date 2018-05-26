@@ -137,19 +137,19 @@ public class MockDiagnosisDao implements DiagnosisDao {
         List<Patient> patients = Arrays.asList(
                 new Patient.Builder().withPatientId(i++)
                         .withFirstName("George").withSecondName("").withLastName("Becali")
-                        .withDate(new Date(1958, 6, 24))
+                        .withBirthDay(new Date(1958, 6, 24))
                         .build(),
                 new Patient.Builder().withPatientId(i++)
                         .withFirstName("Traian").withSecondName("").withLastName("Basescu")
-                        .withDate(new Date(1951, 11, 4))
+                        .withBirthDay(new Date(1951, 11, 4))
                         .build(),
                 new Patient.Builder().withPatientId(i++)
                         .withFirstName("Liviu").withSecondName("").withLastName("Dragnea")
-                        .withDate(new Date(1962, 10, 28))
+                        .withBirthDay(new Date(1962, 10, 28))
                         .build(),
                 new Patient.Builder().withPatientId(i++)
                         .withFirstName("Klaus").withSecondName("").withLastName("Iohanmis")
-                        .withDate(new Date(1959, 6, 13))
+                        .withBirthDay(new Date(1959, 6, 13))
                         .build()
         );
         return patients;

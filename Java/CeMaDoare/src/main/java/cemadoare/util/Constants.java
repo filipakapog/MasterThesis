@@ -36,6 +36,15 @@ public interface Constants {
         COLORS(Color color) { this.color = color; }
 
         public Color getColor() { return this.color; }
-
+    }
+    
+    enum URLS {
+        ICONS8("https://icons8.com/");
+        
+        private String url;
+        
+        URLS(String url) { this.url = url; }
+        
+        public String getUrl() { return this.url; }
     }
 }

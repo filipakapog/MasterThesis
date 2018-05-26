@@ -26,7 +26,7 @@ public class Patient implements Serializable {
     private String lastName;
 
     @Column(name = "birthday")
-    private Date date;
+    private Date birthDay;
 
     @OneToMany(
             mappedBy = "patient",
@@ -53,7 +53,7 @@ public class Patient implements Serializable {
         this.secondName = builder.secondName;
         this.lastName = builder.lastName;
         this.diagnoses = builder.diagnoses;
-        this.date = builder.date;
+        this.birthDay = builder.birthDay;
     }
 
     public Integer getPatientId() {
@@ -71,6 +71,8 @@ public class Patient implements Serializable {
     public String getLastName() {
         return lastName;
     }
+
+    public Date getBirthDay() { return birthDay; }
 
     public List<Diagnosis> getDiagnoses() {
         return diagnoses;
@@ -109,7 +111,7 @@ public class Patient implements Serializable {
                 ", secondName='" + secondName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", diagnoses=" + diagnoses + '\'' +
-                ", date=" + date +
+                ", birthDay=" + birthDay +
                 '}';
     }
 
@@ -119,7 +121,7 @@ public class Patient implements Serializable {
         private String secondName;
         private String lastName;
         private List<Diagnosis> diagnoses;
-        public Date date;
+        public Date birthDay;
 
         public Patient build() {return  new Patient(this); }
 
@@ -143,8 +145,8 @@ public class Patient implements Serializable {
             this.diagnoses = diagnoses;
             return this;
         }
-        public Builder withDate(@NotNull Date date) {
-            this.date = date;
+        public Builder withBirthDay(@NotNull Date birthDay) {
+            this.birthDay = birthDay;
             return this;
         }
     }

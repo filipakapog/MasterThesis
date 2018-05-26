@@ -12,6 +12,9 @@ import org.apache.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
@@ -44,6 +47,13 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tabs = new javax.swing.JTabbedPane();
+        backgroundPanel = new javax.swing.JPanel();
+        leftPanel = new javax.swing.JPanel();
+        logo = new javax.swing.JLabel();
+        footer = new javax.swing.JPanel();
+        goToGitHub = new javax.swing.JLabel();
+        gitHubLogo = new javax.swing.JLabel();
         rightPanel = new javax.swing.JPanel();
         userPassword = new javax.swing.JPasswordField();
         userName = new javax.swing.JTextField();
@@ -52,15 +62,80 @@ public class Login extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         login = new javax.swing.JButton();
-        footer = new javax.swing.JPanel();
-        goToGitHub = new javax.swing.JLabel();
-        gitHubLogo = new javax.swing.JLabel();
-        leftPanel = new javax.swing.JPanel();
-        logo = new javax.swing.JLabel();
+        aboutPanel = new javax.swing.JPanel();
+        aboutLabel = new javax.swing.JLabel();
+        urlButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CeMaDoare");
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setBackground(new java.awt.Color(51, 51, 51));
+        setMinimumSize(new java.awt.Dimension(620, 580));
+        setPreferredSize(new java.awt.Dimension(620, 580));
+
+        tabs.setBackground(new java.awt.Color(51, 51, 51));
+        tabs.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        tabs.setForeground(new java.awt.Color(187, 22, 237));
+        tabs.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        tabs.setMinimumSize(new java.awt.Dimension(600, 570));
+        tabs.setOpaque(true);
+        tabs.setPreferredSize(new java.awt.Dimension(620, 570));
+
+        backgroundPanel.setBackground(new java.awt.Color(51, 51, 51));
+        backgroundPanel.setPreferredSize(new java.awt.Dimension(600, 500));
+        backgroundPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        leftPanel.setBackground(new java.awt.Color(153, 255, 153));
+
+        logo.setBackground(new java.awt.Color(102, 102, 102));
+        logo.setForeground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
+        leftPanel.setLayout(leftPanelLayout);
+        leftPanelLayout.setHorizontalGroup(
+            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftPanelLayout.createSequentialGroup()
+                .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+        leftPanelLayout.setVerticalGroup(
+            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+        );
+
+        backgroundPanel.add(leftPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 450));
+
+        footer.setBackground(new java.awt.Color(51, 51, 51));
+        footer.setPreferredSize(new java.awt.Dimension(600, 50));
+
+        goToGitHub.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        goToGitHub.setForeground(new java.awt.Color(187, 22, 237));
+        goToGitHub.setText("Search me on GitHub");
+
+        gitHubLogo.setBackground(new java.awt.Color(0, 0, 0));
+        gitHubLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/GitHub-Mark-32px.png"))); // NOI18N
+
+        javax.swing.GroupLayout footerLayout = new javax.swing.GroupLayout(footer);
+        footer.setLayout(footerLayout);
+        footerLayout.setHorizontalGroup(
+            footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(footerLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(goToGitHub)
+                .addGap(18, 18, 18)
+                .addComponent(gitHubLogo)
+                .addContainerGap(403, Short.MAX_VALUE))
+        );
+        footerLayout.setVerticalGroup(
+            footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(footerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(goToGitHub)
+                    .addComponent(gitHubLogo))
+                .addContainerGap())
+        );
+
+        backgroundPanel.add(footer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, -1, 50));
 
         rightPanel.setBackground(new java.awt.Color(32, 33, 35));
 
@@ -121,12 +196,12 @@ public class Login extends javax.swing.JFrame {
             .addGroup(rightPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(userPassword)
+                    .addComponent(userPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
                     .addComponent(password)
                     .addComponent(name)
                     .addComponent(userName)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(jSeparator2)
                     .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 20, Short.MAX_VALUE))
         );
@@ -150,57 +225,64 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(147, Short.MAX_VALUE))
         );
 
-        getContentPane().add(rightPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 240, 450));
+        backgroundPanel.add(rightPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 240, 450));
 
-        footer.setBackground(new java.awt.Color(51, 51, 51));
+        tabs.addTab("Home", backgroundPanel);
 
-        goToGitHub.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
-        goToGitHub.setForeground(new java.awt.Color(187, 22, 237));
-        goToGitHub.setText("Search me on GitHub");
+        aboutPanel.setBackground(new java.awt.Color(51, 51, 51));
 
-        gitHubLogo.setBackground(new java.awt.Color(0, 0, 0));
-        gitHubLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/GitHub-Mark-32px.png"))); // NOI18N
+        aboutLabel.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        aboutLabel.setForeground(new java.awt.Color(187, 22, 237));
+        aboutLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        aboutLabel.setText("All icons are taken from:");
 
-        javax.swing.GroupLayout footerLayout = new javax.swing.GroupLayout(footer);
-        footer.setLayout(footerLayout);
-        footerLayout.setHorizontalGroup(
-            footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(footerLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(goToGitHub)
-                .addGap(18, 18, 18)
-                .addComponent(gitHubLogo)
-                .addContainerGap(403, Short.MAX_VALUE))
+        urlButton.setBackground(new java.awt.Color(51, 51, 51));
+        urlButton.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        urlButton.setForeground(new java.awt.Color(187, 22, 237));
+        urlButton.setText("https://icons8.com/");
+        urlButton.setBorderPainted(false);
+        urlButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        urlButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                urlButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout aboutPanelLayout = new javax.swing.GroupLayout(aboutPanel);
+        aboutPanel.setLayout(aboutPanelLayout);
+        aboutPanelLayout.setHorizontalGroup(
+            aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutPanelLayout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(aboutLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(urlButton)
+                .addGap(264, 264, 264))
         );
-        footerLayout.setVerticalGroup(
-            footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(footerLayout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(goToGitHub)
-                    .addComponent(gitHubLogo))
-                .addContainerGap())
-        );
-
-        getContentPane().add(footer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 600, 50));
-
-        leftPanel.setBackground(new java.awt.Color(153, 255, 153));
-
-        logo.setBackground(new java.awt.Color(102, 102, 102));
-        logo.setForeground(new java.awt.Color(204, 204, 204));
-
-        javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
-        leftPanel.setLayout(leftPanelLayout);
-        leftPanelLayout.setHorizontalGroup(
-            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-        );
-        leftPanelLayout.setVerticalGroup(
-            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+        aboutPanelLayout.setVerticalGroup(
+            aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutPanelLayout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addGroup(aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aboutLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(urlButton))
+                .addContainerGap(299, Short.MAX_VALUE))
         );
 
-        getContentPane().add(leftPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 450));
+        urlButton.getAccessibleContext().setAccessibleName("urlButton\n");
+
+        tabs.addTab("About", aboutPanel);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -247,6 +329,32 @@ public class Login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_loginActionPerformed
 
+    private void urlButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urlButtonActionPerformed
+        final URI uri;
+        try {
+            uri = new URI(Constants.URLS.ICONS8.getUrl());
+            goTo(uri);
+            throw new URISyntaxException("none", "none");
+        } catch (URISyntaxException e) {
+            handleException(e);
+        } catch (IOException e) {
+            handleException(e);
+        }
+    }//GEN-LAST:event_urlButtonActionPerformed
+
+    private void goTo(URI uri) throws IOException {
+        if (Desktop.isDesktopSupported()) {
+            Desktop.getDesktop().browse(uri);
+        } else {
+            LOGGER.error("Desktop is not supported");
+        }
+    }
+
+    private void handleException(Exception e) {
+        LOGGER.error("An [" + e.getClass().getName() + "] has occurred: " + e.getMessage());
+    }
+
+
     /**
      * @param args the command line arguments
      */
@@ -258,7 +366,7 @@ public class Login extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -286,6 +394,9 @@ public class Login extends javax.swing.JFrame {
     private LoginResponsible loginResponsible = new LoginResponsibleImpl();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel aboutLabel;
+    private javax.swing.JPanel aboutPanel;
+    private javax.swing.JPanel backgroundPanel;
     private javax.swing.JPanel footer;
     private javax.swing.JLabel gitHubLogo;
     private javax.swing.JLabel goToGitHub;
@@ -297,6 +408,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel name;
     private javax.swing.JLabel password;
     private javax.swing.JPanel rightPanel;
+    private javax.swing.JTabbedPane tabs;
+    private javax.swing.JButton urlButton;
     private javax.swing.JTextField userName;
     private javax.swing.JPasswordField userPassword;
     // End of variables declaration//GEN-END:variables

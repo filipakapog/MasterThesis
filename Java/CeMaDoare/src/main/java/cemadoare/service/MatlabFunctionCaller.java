@@ -11,9 +11,11 @@ import java.util.concurrent.Future;
 public final class MatlabFunctionCaller {
 
     private static volatile MatlabFunctionCaller instance;
+
+    private static final Logger LOGGER = Logger.getLogger(MatlabFunctionCaller.class);
+
     private Future<MatlabEngine> enginesBag;
     private MatlabEngine engine;
-    private final static Logger LOGGER = Logger.getLogger(MatlabFunctionCaller.class);
 
     private MatlabFunctionCaller() {}
 
@@ -37,9 +39,9 @@ public final class MatlabFunctionCaller {
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
-            LOGGER.info("MATLAB started asynchronously");
+            LOGGER.info("Started Matlab engine asynchronously");
         } else {
-            LOGGER.info("Active MATLAB session present");
+            LOGGER.info("Active Matlab session present");
         }
     }
 
@@ -79,10 +81,10 @@ public final class MatlabFunctionCaller {
     public void disconnectFromMatlabEngine() {
         try {
             if (engine != null) {
-                LOGGER.info("MATLAB connection closed");
+                LOGGER.info("Matlab engine session closed");
                 engine.disconnect();
             } else {
-                LOGGER.info("No MATLAB connection opened");
+                LOGGER.info("No Matlab engine session opened");
             }
         } catch (EngineException e) {
             e.printStackTrace();

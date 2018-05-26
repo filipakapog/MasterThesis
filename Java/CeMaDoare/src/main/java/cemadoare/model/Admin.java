@@ -85,8 +85,8 @@ public class Admin implements Serializable {
             return this;
         }
 
-        public Builder withPassword(@NotNull String Password) {
-            this.adminId = adminId;
+        public Builder withPassword(@NotNull String password) {
+            this.password = password;
             return this;
         }
     }

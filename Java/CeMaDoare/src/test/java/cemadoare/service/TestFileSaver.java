@@ -54,7 +54,7 @@ public class TestFileSaver {
         whenNew(JFileChooser.class).withNoArguments().thenReturn(fileChooser);
         when(fileChooser.getSelectedFile()).thenReturn(new File(TEST_FILE_TXT));
 
-        FileSaver mock = spy(new FileSaver(mock(JPanel.class)));
+        FileSaver mock = spy(new FileSaver(mock(JFrame.class)));
         return mock;
     }
 }

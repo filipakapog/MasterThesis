@@ -9,7 +9,7 @@ public class AppController {
 
     public static void main(String[] args) {
         AppController app = new AppController();
-        if (app.loginResponsible.successfulLogin("Filip", "filip")) {
+        if (app.loginResponsible.tryLoginAdmin("Filip", "filip")) {
             System.out.println("User successfully logged in");
         } else {
             System.out.println("User could not be logged in");

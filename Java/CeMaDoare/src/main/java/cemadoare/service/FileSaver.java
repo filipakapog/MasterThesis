@@ -1,5 +1,7 @@
 package cemadoare.service;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,12 +10,12 @@ import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 
 public class FileSaver {
-    private JPanel rootPannel;
+    private JFrame rootFrame;
     private JFileChooser fileChooser;
 
-    public FileSaver(JPanel rootPannel) {
+    public FileSaver(JFrame rootFrame) {
         this.fileChooser = new JFileChooser();
-        this.rootPannel = rootPannel;
+        this.rootFrame = rootFrame;
     }
 
     /**
@@ -21,8 +23,8 @@ public class FileSaver {
      * @param locationToSave the place where the imported .mat file will be saved;
      */
     public void saveFileTo(String locationToSave) {
-        fileChooser.showOpenDialog(rootPannel);
-        File file = fileChooser.getSelectedFile();
+        fileChooser.showOpenDialog(rootFrame);
+        File file = fileChooser.getSelectedFile(); if (null == file) { return; }
 
         RandomAccessFile fromFile = null;
         RandomAccessFile toFile = null;

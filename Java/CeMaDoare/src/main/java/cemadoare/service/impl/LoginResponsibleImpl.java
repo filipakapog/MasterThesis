@@ -2,23 +2,38 @@ package cemadoare.service.impl;
 
 
 import cemadoare.dao.AdminDao;
+import cemadoare.dao.DoctorDao;
+import cemadoare.dao.impl.mock.MockAdminDao;
+import cemadoare.dao.impl.mock.MockDoctorDao;
 import cemadoare.model.Admin;
+import cemadoare.model.Doctor;
 import cemadoare.service.LoginResponsible;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.util.List;
 
 public class LoginResponsibleImpl implements LoginResponsible {
 
-    private AdminDao adminDao = (AdminDao)((ApplicationContext) new ClassPathXmlApplicationContext("beans.xml"))
-            .getBean("adminDao");
+    private AdminDao adminDao = new MockAdminDao();
+    private DoctorDao doctorDao = new MockDoctorDao();
 
     @Override
-    public boolean successfulLogin(String username, String password) {
+    public boolean tryLoginAdmin(String username, String password) {
+        // TODO: http://www.codejava.net/java-se/swing/jpasswordfield-basic-tutorial-and-examples
         List<Admin> adminList = adminDao.getAllAdmins();
         for (Admin admin : adminList) {
             if (admin.getName().equals(username)) {
                 return admin.getPassword().equals(password);
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean tryLoginUser(String username, String password) {
+        List<Doctor> doctorListList = doctorDao.getAllDoctors();
+        for (Doctor doctor : doctorListList) {
+            if (doctor.getFirstName().equals(username)) {
+                return doctor.getPassword().equals(password);
             }
         }
         return false;

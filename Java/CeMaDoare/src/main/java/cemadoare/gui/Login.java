@@ -8,13 +8,12 @@ package cemadoare.gui;
 import cemadoare.service.LoginResponsible;
 import cemadoare.service.impl.LoginResponsibleImpl;
 import cemadoare.util.Constants;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
 
 import static org.apache.commons.lang3.StringUtils.isEmpty;
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**
  *
@@ -224,7 +223,7 @@ public class Login extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         String usr = userName.getText();
-        String pswd = password.getText();
+        String pswd = userPassword.getText();
 
         if (isEmpty(usr) && isEmpty(pswd)) {
             JOptionPane.showMessageDialog(this, "Username and Password are empty");
@@ -232,10 +231,18 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Username is empty");
         } else if (isEmpty(pswd)) {
             JOptionPane.showMessageDialog(this, "Password is empty");
-        } else if (!loginResponsible.successfulLogin(usr, pswd)){
-            JOptionPane.showMessageDialog(this, "This username does not exist in system/Wrong username password combination");
+        } else if (loginResponsible.tryLoginAdmin(usr, pswd)) {
+            LOGGER.info("Admin has been successfully logged");
+            Admin admin = new Admin();
+            setVisible(false);
+            admin.setVisible(true);
+        } else if (loginResponsible.tryLoginUser(usr, pswd)) {
+            LOGGER.info("User has been successfully logged");
+            User user = new User();
+            setVisible(false);
+            user.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Successful login");
+            JOptionPane.showMessageDialog(this, "This username does not exist in system/Wrong username password combination");
         }
 
     }//GEN-LAST:event_loginActionPerformed
@@ -275,7 +282,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private LoginResponsible loginResponsible = new LoginResponsibleImpl();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -294,4 +301,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField userPassword;
     // End of variables declaration//GEN-END:variables
 
+    private final static Logger LOGGER = Logger.getLogger(Login.class);
 }

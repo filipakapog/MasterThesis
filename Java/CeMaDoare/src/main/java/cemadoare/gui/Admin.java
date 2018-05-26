@@ -5,8 +5,13 @@
  */
 package cemadoare.gui;
 
+import cemadoare.logger.MyLogger;
+import cemadoare.service.FileSaver;
+import cemadoare.service.MatlabFunctionCaller;
+import cemadoare.util.Constants;
+import org.apache.log4j.Logger;
+
 /**
- *
  * @author Filip
  */
 public class Admin extends javax.swing.JFrame {
@@ -15,7 +20,7 @@ public class Admin extends javax.swing.JFrame {
      * Creates new form Admin
      */
     public Admin() {
-        initComponents();
+        initComponents(); otherNeedfulStuff();
     }
 
     /**
@@ -27,21 +32,233 @@ public class Admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dataContentSelectionButtonGroup = new javax.swing.ButtonGroup();
+        importButton = new javax.swing.JButton();
+        importLabel = new javax.swing.JLabel();
+        arrhythmiaRButton = new javax.swing.JRadioButton();
+        stenosisRButton = new javax.swing.JRadioButton();
+        dataSetLabel = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        dataSetLabel1 = new javax.swing.JLabel();
+        trainButton = new javax.swing.JButton();
+        classifyButton = new javax.swing.JButton();
+        dataSetLabel2 = new javax.swing.JLabel();
+        dataSetLabel3 = new javax.swing.JLabel();
+        consoleLabel = new javax.swing.JLabel();
+        classificationLabel = new javax.swing.JLabel();
+        adminPicture = new javax.swing.JLabel();
+        welcomeLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        classificationTextPane = new javax.swing.JTextPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        consoleTextPane = new javax.swing.JTextPane();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(600, 500));
+
+        importButton.setText("Import");
+        importButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importButtonActionPerformed(evt);
+            }
+        });
+
+        importLabel.setText("Import .mat file");
+
+        dataContentSelectionButtonGroup.add(arrhythmiaRButton);
+        arrhythmiaRButton.setText("Arrhythmia");
+        arrhythmiaRButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                arrhythmiaRButtonActionPerformed(evt);
+            }
+        });
+
+        dataContentSelectionButtonGroup.add(stenosisRButton);
+        stenosisRButton.setText("Stenosis");
+        stenosisRButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stenosisRButtonActionPerformed(evt);
+            }
+        });
+
+        dataSetLabel.setText("Select the content of data in .mat file ");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Classifier1", "Classifier2", "Classifier3", "MyClassifier" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        dataSetLabel1.setText("Select the type of classifier");
+
+        trainButton.setText("Train");
+        trainButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trainButtonActionPerformed(evt);
+            }
+        });
+
+        classifyButton.setText("Classify");
+        classifyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classifyButtonActionPerformed(evt);
+            }
+        });
+
+        dataSetLabel2.setText("Train the classifier");
+
+        dataSetLabel3.setText("Start the classification");
+
+        consoleLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        consoleLabel.setText("Console");
+
+        classificationLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        classificationLabel.setText("Classification");
+
+        adminPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/admin.png"))); // NOI18N
+
+        welcomeLabel.setText("Welcome Filip");
+
+        classificationTextPane.setEditable(false);
+        jScrollPane1.setViewportView(classificationTextPane);
+
+        consoleTextPane.setEditable(false);
+        jScrollPane3.setViewportView(consoleTextPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(116, 116, 116)
+                .addComponent(consoleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(classificationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(welcomeLabel)
+                .addGap(73, 73, 73))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(arrhythmiaRButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(stenosisRButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(importButton, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(trainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(classifyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dataSetLabel3)
+                            .addComponent(importLabel)
+                            .addComponent(dataSetLabel2)
+                            .addComponent(dataSetLabel)
+                            .addComponent(dataSetLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addComponent(adminPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(importButton)
+                            .addComponent(importLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(arrhythmiaRButton)
+                            .addComponent(stenosisRButton)
+                            .addComponent(dataSetLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dataSetLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(trainButton)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(dataSetLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(5, 5, 5)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(classifyButton)
+                            .addComponent(dataSetLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(adminPicture)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(welcomeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(consoleLabel)
+                    .addComponent(classificationLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
+                .addGap(0, 55, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void arrhythmiaRButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrhythmiaRButtonActionPerformed
+        APP_LOGGER.logIn(consoleTextPane, "Arrhythmia data set was selected");
+    }//GEN-LAST:event_arrhythmiaRButtonActionPerformed
+
+    private void stenosisRButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stenosisRButtonActionPerformed
+        APP_LOGGER.logIn(consoleTextPane, "Stenosis data set was selected");
+    }//GEN-LAST:event_stenosisRButtonActionPerformed
+
+    private void classifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classifyButtonActionPerformed
+        if (isTrained) {
+            APP_LOGGER.logIn(consoleTextPane, "Starting classification");
+            isClassified = true;
+            matlabFunctionCaller.callClassifier();
+            APP_LOGGER.logIn(classificationTextPane, "Results of the classification");
+        } else {
+            APP_LOGGER.logErrorIn(consoleTextPane, "First we need to train the classifier", true);
+        }
+    }//GEN-LAST:event_classifyButtonActionPerformed
+
+    private void importButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importButtonActionPerformed
+        String matlabDataPath = Constants.PATHS.MATLAB_DATA.getPath();
+        APP_LOGGER.logIn(consoleTextPane, "Import was clicked");
+        fileSaver.saveFileTo(matlabDataPath);
+        APP_LOGGER.logIn(consoleTextPane, "File saved to " + matlabDataPath);
+    }//GEN-LAST:event_importButtonActionPerformed
+
+    private void trainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainButtonActionPerformed
+        String selected = String.valueOf(jComboBox1.getSelectedItem());
+        APP_LOGGER.logIn(consoleTextPane, selected + " is getting trained");
+        // train the classifier
+        isTrained = true;
+        // prompt the user that training is done
+    }//GEN-LAST:event_trainButtonActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        String selected = String.valueOf(jComboBox1.getSelectedItem());
+        APP_LOGGER.logIn(consoleTextPane, selected + "classifier was selected");
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void otherNeedfulStuff() {
+        matlabFunctionCaller.connectToMatlablEngine();
+        LOGGER.info("Created a new Matlab engine session");
+    }
 
     /**
      * @param args the command line arguments
@@ -50,7 +267,7 @@ public class Admin extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -79,5 +296,34 @@ public class Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel adminPicture;
+    private javax.swing.JRadioButton arrhythmiaRButton;
+    private javax.swing.JLabel classificationLabel;
+    private javax.swing.JTextPane classificationTextPane;
+    private javax.swing.JButton classifyButton;
+    private javax.swing.JLabel consoleLabel;
+    private javax.swing.JTextPane consoleTextPane;
+    private javax.swing.ButtonGroup dataContentSelectionButtonGroup;
+    private javax.swing.JLabel dataSetLabel;
+    private javax.swing.JLabel dataSetLabel1;
+    private javax.swing.JLabel dataSetLabel2;
+    private javax.swing.JLabel dataSetLabel3;
+    private javax.swing.JButton importButton;
+    private javax.swing.JLabel importLabel;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JRadioButton stenosisRButton;
+    private javax.swing.JButton trainButton;
+    private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
+
+    private final static Logger LOGGER = Logger.getLogger(Admin.class);
+
+    private final MatlabFunctionCaller matlabFunctionCaller = MatlabFunctionCaller.getInstance();
+    private final FileSaver fileSaver = new FileSaver(this);
+    private final MyLogger APP_LOGGER = MyLogger.getInstance();
+
+    private boolean isTrained;
+    private boolean isClassified;
 }

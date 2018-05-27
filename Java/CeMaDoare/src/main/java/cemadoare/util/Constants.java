@@ -14,9 +14,8 @@ import java.awt.*;
  */
 public interface Constants {
     enum PATHS {
-        IMGS_HOME("/imgs/"),
-        GITHUB_LOGO(IMGS_HOME.getPath() + "GitHub-Mark-32px.png"),
-        DOCTOR_LOGO(IMGS_HOME.getPath() + "login_doctor.jpg"),
+        GITHUB_LOGO(MyPropertyManager.getProperty("constants.paths.githublogo")),
+        DOCTOR_LOGO(MyPropertyManager.getProperty("constants.paths.doctorlogo")),
         MATLAB_DATA(MyPropertyManager.getProperty("matlab.dataPath"));
         
         private String path;
@@ -39,7 +38,7 @@ public interface Constants {
     }
     
     enum URLS {
-        ICONS8("https://icons8.com/");
+        ICONS8(MyPropertyManager.getProperty("constants.urls.icons8"));
         
         private String url;
         

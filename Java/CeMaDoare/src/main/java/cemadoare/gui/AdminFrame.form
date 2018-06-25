@@ -7,7 +7,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="CeMaDoare - Inerfata Admin"/>
+    <Property name="title" type="java.lang.String" value="InimaSanatoasa"/>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[600, 500]"/>
     </Property>
@@ -83,7 +83,7 @@
                               <Component id="classifyButton" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
                               <Component id="trainButton" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
                               <Component id="jComboBox1" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
-                              <Component id="arrhythmiaRButton" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                              <Component id="arrhythmiaRadionButton" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
                               <Component id="importButton" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -97,7 +97,7 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                          <Component id="stenosisRButton" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="stenosisRadioButton" min="-2" pref="92" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -124,10 +124,10 @@
                                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="stenosisRButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="stenosisRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="dataSetLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="arrhythmiaRButton" min="-2" max="-2" attributes="0"/>
+                                      <Component id="arrhythmiaRadionButton" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -222,7 +222,7 @@
             <Property name="text" type="java.lang.String" value="Import .mat file"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="arrhythmiaRButton">
+        <Component class="javax.swing.JRadioButton" name="arrhythmiaRadionButton">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="dataContentSelectionButtonGroup"/>
@@ -230,10 +230,10 @@
             <Property name="text" type="java.lang.String" value="Arrhythmia"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="arrhythmiaRButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="arrhythmiaRadionButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="stenosisRButton">
+        <Component class="javax.swing.JRadioButton" name="stenosisRadioButton">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="dataContentSelectionButtonGroup"/>
@@ -241,7 +241,7 @@
             <Property name="text" type="java.lang.String" value="Stenosis"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stenosisRButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stenosisRadioButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="dataSetLabel">

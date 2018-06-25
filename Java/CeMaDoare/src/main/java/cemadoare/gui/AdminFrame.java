@@ -5,22 +5,24 @@
  */
 package cemadoare.gui;
 
+import cemadoare.classifer.ClassifierIntegrator;
+import cemadoare.classifer.DataSetType;
 import cemadoare.logger.MyLogger;
 import cemadoare.service.FileSaver;
-import cemadoare.service.MatlabFunctionCaller;
+import cemadoare.classifer.impl.MatlablClassifierIntegrator;
 import cemadoare.util.Constants;
 import org.apache.log4j.Logger;
 
 /**
  * @author Filip
  */
-public class Admin extends javax.swing.JFrame {
+public class AdminFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form Admin
      */
-    public Admin() {
-        initComponents(); otherNeedfulStuff();
+    public AdminFrame() {
+        initComponents();
     }
 
     /**
@@ -40,8 +42,8 @@ public class Admin extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         consoleTextPane = new javax.swing.JTextPane();
         importLabel = new javax.swing.JLabel();
-        arrhythmiaRButton = new javax.swing.JRadioButton();
-        stenosisRButton = new javax.swing.JRadioButton();
+        arrhythmiaRadionButton = new javax.swing.JRadioButton();
+        stenosisRadioButton = new javax.swing.JRadioButton();
         dataSetLabel = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         dataSetLabel1 = new javax.swing.JLabel();
@@ -57,7 +59,7 @@ public class Admin extends javax.swing.JFrame {
         logOutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("CeMaDoare - Inerfata Admin");
+        setTitle("InimaSanatoasa");
         setMinimumSize(new java.awt.Dimension(600, 500));
         setSize(new java.awt.Dimension(600, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -80,19 +82,19 @@ public class Admin extends javax.swing.JFrame {
 
         importLabel.setText("Import .mat file");
 
-        dataContentSelectionButtonGroup.add(arrhythmiaRButton);
-        arrhythmiaRButton.setText("Arrhythmia");
-        arrhythmiaRButton.addActionListener(new java.awt.event.ActionListener() {
+        dataContentSelectionButtonGroup.add(arrhythmiaRadionButton);
+        arrhythmiaRadionButton.setText("Arrhythmia");
+        arrhythmiaRadionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                arrhythmiaRButtonActionPerformed(evt);
+                arrhythmiaRadionButtonActionPerformed(evt);
             }
         });
 
-        dataContentSelectionButtonGroup.add(stenosisRButton);
-        stenosisRButton.setText("Stenosis");
-        stenosisRButton.addActionListener(new java.awt.event.ActionListener() {
+        dataContentSelectionButtonGroup.add(stenosisRadioButton);
+        stenosisRadioButton.setText("Stenosis");
+        stenosisRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stenosisRButtonActionPerformed(evt);
+                stenosisRadioButtonActionPerformed(evt);
             }
         });
 
@@ -172,7 +174,7 @@ public class Admin extends javax.swing.JFrame {
                             .addComponent(classifyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(trainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(arrhythmiaRButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(arrhythmiaRadionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(importButton, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +185,7 @@ public class Admin extends javax.swing.JFrame {
                             .addComponent(importLabel)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
                         .addGap(113, 113, 113)
-                        .addComponent(stenosisRButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(stenosisRadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(223, 223, 223)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
                 .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,9 +206,9 @@ public class Admin extends javax.swing.JFrame {
                                 .addGap(49, 49, 49)
                                 .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(stenosisRButton)
+                                        .addComponent(stenosisRadioButton)
                                         .addComponent(dataSetLabel))
-                                    .addComponent(arrhythmiaRButton))
+                                    .addComponent(arrhythmiaRadionButton))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,19 +250,25 @@ public class Admin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void arrhythmiaRButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrhythmiaRButtonActionPerformed
+    private void arrhythmiaRadionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrhythmiaRadionButtonActionPerformed
         APP_LOGGER.logIn(consoleTextPane, "Arrhythmia data set was selected");
-    }//GEN-LAST:event_arrhythmiaRButtonActionPerformed
+    }//GEN-LAST:event_arrhythmiaRadionButtonActionPerformed
 
-    private void stenosisRButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stenosisRButtonActionPerformed
+    private void stenosisRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stenosisRadioButtonActionPerformed
         APP_LOGGER.logIn(consoleTextPane, "Stenosis data set was selected");
-    }//GEN-LAST:event_stenosisRButtonActionPerformed
+    }//GEN-LAST:event_stenosisRadioButtonActionPerformed
 
     private void classifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classifyButtonActionPerformed
         if (isTrained) {
             APP_LOGGER.logIn(consoleTextPane, "Starting classification");
             isClassified = true;
-            matlabFunctionCaller.callClassifier();
+
+            if (stenosisRadioButton.isSelected()) {
+                matlabFunctionCaller.classify(DataSetType.STENOSIS);
+            } else if (arrhythmiaRadionButton.isSelected()){
+                matlabFunctionCaller.classify(DataSetType.ARRYTHMIA);
+            }
+
             APP_LOGGER.logIn(classificationTextPane, "Results of the classification");
         } else {
             APP_LOGGER.logErrorIn(consoleTextPane, "First we need to train the classifier", true);
@@ -289,14 +297,9 @@ public class Admin extends javax.swing.JFrame {
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
         setVisible(false);
-        new Login().setVisible(true);
+        new LoginFrame().setVisible(true);
         LOGGER.info("Admin has been successfully logged off");
     }//GEN-LAST:event_logOutButtonActionPerformed
-
-    private void otherNeedfulStuff() {
-        matlabFunctionCaller.connectToMatlablEngine();
-        LOGGER.info("Created a new Matlab engine session");
-    }
 
     /**
      * @param args the command line arguments
@@ -315,27 +318,28 @@ public class Admin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Admin().setVisible(true);
+                new AdminFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminPicture;
-    private javax.swing.JRadioButton arrhythmiaRButton;
+    private javax.swing.JRadioButton arrhythmiaRadionButton;
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JLabel classificationLabel;
     private javax.swing.JTextPane classificationTextPane;
@@ -354,14 +358,14 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton logOutButton;
-    private javax.swing.JRadioButton stenosisRButton;
+    private javax.swing.JRadioButton stenosisRadioButton;
     private javax.swing.JButton trainButton;
     private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 
-    private final static Logger LOGGER = Logger.getLogger(Admin.class);
+    private final static Logger LOGGER = Logger.getLogger(AdminFrame.class);
 
-    private final MatlabFunctionCaller matlabFunctionCaller = MatlabFunctionCaller.getInstance();
+    private final ClassifierIntegrator matlabFunctionCaller = MatlablClassifierIntegrator.getInstance();
     private final FileSaver fileSaver = new FileSaver(this);
     private final MyLogger APP_LOGGER = MyLogger.getInstance();
 

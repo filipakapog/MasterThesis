@@ -24,6 +24,11 @@
         <query>SELECT d FROM Diagnosis d </query>
     </named-query>
 
+    <!-- Patien -->
+    <named-query name="Diagnosis.allPatients">
+        <query>SELECT p FROM Patient p </query>
+    </named-query>
+
 
 
 

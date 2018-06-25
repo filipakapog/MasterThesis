@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "PATIENTS")
 public class Patient implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "patientId")
     private Integer patientId;
 
@@ -89,7 +89,6 @@ public class Patient implements Serializable {
 
         Patient patient = (Patient) o;
 
-        if (patientId != patient.patientId) return false;
         if (!firstName.equals(patient.firstName)) return false;
         if (secondName != null ? !secondName.equals(patient.secondName) : patient.secondName != null) return false;
         return lastName.equals(patient.lastName);

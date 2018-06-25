@@ -10,7 +10,6 @@ import java.util.List;
 
 public class MockDoctorDao implements DoctorDao {
 
-
     private List<Doctor> doctors = Arrays.asList(
             new Doctor.Builder().withDoctorId(1)
                     .withFirstName("Ion").withSecondName("George").withLastName("Popescu")
@@ -23,7 +22,8 @@ public class MockDoctorDao implements DoctorDao {
     );
 
     @Autowired
-    public MockDoctorDao() { }
+    public MockDoctorDao() {
+    }
 
     @Override
     public List<Doctor> getAllDoctors() {
@@ -33,7 +33,9 @@ public class MockDoctorDao implements DoctorDao {
     @Override
     public Doctor getDoctorById(int id) {
         for (Doctor doctor : doctors) {
-            if (doctor.getDoctorId().equals(id)) { return doctor; }
+            if (doctor.getDoctorId().equals(id)) {
+                return doctor;
+            }
         }
         return new Doctor();
     }
@@ -41,7 +43,9 @@ public class MockDoctorDao implements DoctorDao {
     @Override
     public Doctor getDoctorByFirstName(String firstName) {
         for (Doctor doctor : doctors) {
-            if (doctor.getFirstName().equals(firstName)) { return doctor; }
+            if (doctor.getFirstName().equals(firstName)) {
+                return doctor;
+            }
         }
         return new Doctor();
     }
@@ -49,7 +53,9 @@ public class MockDoctorDao implements DoctorDao {
     @Override
     public Doctor getDoctorBySecondName(String secondName) {
         for (Doctor doctor : doctors) {
-            if (doctor.getFirstName().equals(secondName)) { return doctor; }
+            if (doctor.getFirstName().equals(secondName)) {
+                return doctor;
+            }
         }
         return new Doctor();
     }
@@ -57,7 +63,9 @@ public class MockDoctorDao implements DoctorDao {
     @Override
     public Doctor getDoctorByLastName(String lastName) {
         for (Doctor doctor : doctors) {
-            if (doctor.getFirstName().equals(lastName)) { return doctor; }
+            if (doctor.getFirstName().equals(lastName)) {
+                return doctor;
+            }
         }
         return new Doctor();
     }

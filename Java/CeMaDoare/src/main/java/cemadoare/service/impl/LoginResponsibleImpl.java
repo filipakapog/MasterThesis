@@ -3,8 +3,8 @@ package cemadoare.service.impl;
 
 import cemadoare.dao.AdminDao;
 import cemadoare.dao.DoctorDao;
-import cemadoare.dao.impl.mock.MockAdminDao;
-import cemadoare.dao.impl.mock.MockDoctorDao;
+import cemadoare.dao.impl.AdminDaoImpl;
+import cemadoare.dao.impl.DoctorDaoImpl;
 import cemadoare.model.Admin;
 import cemadoare.model.Doctor;
 import cemadoare.service.LoginResponsible;
@@ -13,8 +13,8 @@ import java.util.List;
 
 public class LoginResponsibleImpl implements LoginResponsible {
 
-    private AdminDao adminDao = new MockAdminDao();
-    private DoctorDao doctorDao = new MockDoctorDao();
+    private AdminDao adminDao = new AdminDaoImpl();
+    private DoctorDao doctorDao = new DoctorDaoImpl();
 
     @Override
     public boolean tryLoginAdmin(String username, String password) {

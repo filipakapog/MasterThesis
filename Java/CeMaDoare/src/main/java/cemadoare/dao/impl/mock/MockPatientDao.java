@@ -18,4 +18,19 @@ public class MockPatientDao implements PatientDao {
         }
         return patients;
     }
+
+    @Override
+    public void addPatient(Patient patient) {
+
+    }
+
+    @Override
+    public void updatePatient(Patient patient) {
+
+    }
+
+    @Override
+    public void deletePatient(Patient patient) {
+
+    }
 }

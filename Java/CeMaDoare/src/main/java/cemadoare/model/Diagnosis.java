@@ -8,11 +8,11 @@ import java.util.Date;
 
 @Entity
 @Table(name = "DIAGNOSES")
-public class Diagnosis implements Serializable{
+public class    Diagnosis implements Serializable{
     public static enum Result { SANATOS, BOLNAV, NECUNOSCUT}
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DIAGNOSISID")
     private Integer diagnosisId;
 
@@ -84,7 +84,7 @@ public class Diagnosis implements Serializable{
                 "diagnosisId=" + diagnosisId +
                 ", consultDate=" + consultDate +
                 ", result=" + result +
-                ", patient=" + patient +
+                ", patient=" + patient.getPatientId() +
                 '}';
     }
 

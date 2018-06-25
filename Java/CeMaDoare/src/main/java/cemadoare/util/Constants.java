@@ -16,8 +16,9 @@ public interface Constants {
     enum PATHS {
         GITHUB_LOGO(MyPropertyManager.getProperty("constants.paths.githublogo")),
         DOCTOR_LOGO(MyPropertyManager.getProperty("constants.paths.doctorlogo")),
-        MATLAB_DATA(MyPropertyManager.getProperty("matlab.dataPath"));
-        
+        MATLAB_DATA(MyPropertyManager.getProperty("matlab.dataPath")),
+        MATLAB_TEST_DATA(MyPropertyManager.getProperty("matlab.testDataPath"));
+
         private String path;
         
         PATHS(String path) {

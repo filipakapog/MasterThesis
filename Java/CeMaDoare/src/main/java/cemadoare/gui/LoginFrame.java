@@ -22,12 +22,12 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
  *
  * @author Filip
  */
-public class Login extends javax.swing.JFrame {
+public class LoginFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form Test
      */
-    public Login() {
+    public LoginFrame() {
         initComponents();
         resizeIcons();
     }
@@ -67,7 +67,7 @@ public class Login extends javax.swing.JFrame {
         urlButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("CeMaDoare");
+        setTitle("InimaSanatoasa");
         setBackground(new java.awt.Color(51, 51, 51));
         setMinimumSize(new java.awt.Dimension(620, 580));
         setPreferredSize(new java.awt.Dimension(620, 580));
@@ -109,7 +109,7 @@ public class Login extends javax.swing.JFrame {
 
         goToGitHub.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         goToGitHub.setForeground(new java.awt.Color(187, 22, 237));
-        goToGitHub.setText("Search me on GitHub");
+        goToGitHub.setText("Fork me on GitHub");
 
         gitHubLogo.setBackground(new java.awt.Color(0, 0, 0));
         gitHubLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/GitHub-Mark-32px.png"))); // NOI18N
@@ -123,7 +123,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(goToGitHub)
                 .addGap(18, 18, 18)
                 .addComponent(gitHubLogo)
-                .addContainerGap(403, Short.MAX_VALUE))
+                .addContainerGap(417, Short.MAX_VALUE))
         );
         footerLayout.setVerticalGroup(
             footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,7 +142,7 @@ public class Login extends javax.swing.JFrame {
         userPassword.setBackground(new java.awt.Color(32, 33, 35));
         userPassword.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         userPassword.setForeground(new java.awt.Color(255, 255, 255));
-        userPassword.setText("jPasswordField1");
+        userPassword.setText("ionescu");
         userPassword.setBorder(null);
         userPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -153,6 +153,7 @@ public class Login extends javax.swing.JFrame {
         userName.setBackground(new java.awt.Color(32, 33, 35));
         userName.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         userName.setForeground(new java.awt.Color(255, 255, 255));
+        userName.setText("Mihai");
         userName.setBorder(null);
         userName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -315,12 +316,12 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Password is empty");
         } else if (loginResponsible.tryLoginAdmin(usr, pswd)) {
             LOGGER.info("Admin has been successfully logged");
-            Admin admin = new Admin();
+            AdminFrame admin = new AdminFrame();
             setVisible(false);
             admin.setVisible(true);
         } else if (loginResponsible.tryLoginUser(usr, pswd)) {
             LOGGER.info("User has been successfully logged");
-            User user = new User();
+            DoctorFrame user = new DoctorFrame();
             setVisible(false);
             user.setVisible(true);
         } else {
@@ -372,21 +373,23 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new LoginFrame().setVisible(true);
             }
         });
     }
@@ -414,5 +417,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField userPassword;
     // End of variables declaration//GEN-END:variables
 
-    private final static Logger LOGGER = Logger.getLogger(Login.class);
+    private final static Logger LOGGER = Logger.getLogger(LoginFrame.class);
 }

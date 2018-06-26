@@ -18,10 +18,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 
 /**
  *
@@ -333,7 +330,10 @@ public class DoctorFrame extends javax.swing.JFrame {
             row[1] = patient.getSecondName();
             row[2] = patient.getLastName();
             row[3] = new SimpleDateFormat("dd/MM/yyyy").format(patient.getBirthDay());
-            row[4] = "ill";
+            List<Diagnosis> diagnoses = patient.getDiagnoses();
+            Collections.sort(diagnoses, Comparator.comparing(Diagnosis::getConsultDate));
+            // TODO Check if it sort ascending
+            row[4] = diagnoses.isEmpty() ? Diagnosis.Result.NECUNOSCUT : diagnoses.get(0).getResult();
 
             DefaultTableModel model = (DefaultTableModel) patientTable.getModel();
             model.addRow(row);
